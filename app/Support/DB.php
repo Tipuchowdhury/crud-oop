@@ -80,6 +80,14 @@ abstract class DB
 			return $info;
 		}
 	}
+	protected function Delete_single_student($id) {
+
+		$sql = "DELETE FROM crud WHERE id = $id";
+		$info = $this->Dbonnection ()-> query($sql);
+		if ($info) {
+			return true;
+		}
+	}
 
 
 	

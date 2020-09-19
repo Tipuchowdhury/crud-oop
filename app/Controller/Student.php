@@ -38,10 +38,19 @@
 				return $all_students;
 			}
 		}
+		/**
+		 * show single student information
+		 */
 		public function ViewStudent($id) {
 			$info = $this->single_student_info($id);
 			if ($info) {
 				return $info->fetch_assoc();
+			}
+		}
+		public function DeleteStudent($id) {
+			$data = $this-> Delete_single_student($id);
+			if ($data) {
+				return " <p class= 'alert alert-danger'>Delete successfully !!<button class = 'close', data-dismiss = 'alert'>&times;</button></p> ";
 			}
 		}
 	}

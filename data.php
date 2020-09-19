@@ -2,7 +2,11 @@
 <?php 
 	use APP\Controller\Student;
 	$stu = new Student;
-	
+	if (isset($_GET['id'])) {
+		$id = $_GET['id'];
+		$mess = $info = $stu-> DeleteStudent($id);
+	}
+
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,6 +24,10 @@
 
 	<div class="wrap-table">
 		<a class = "btn btn-primary" href="index.php">Add Student</a>
+		<?php 
+		if (isset($mess)) {
+		 	echo $mess;
+		 } ?>
 		<div class="card shadow">
 			<div class="card-body">
 				<h2>All Data</h2>
@@ -51,7 +59,7 @@
 							<td>
 								<a class="btn btn-sm btn-info" href="view.php?id=<?php echo $data['id']; ?> ">View</a>
 								<a class="btn btn-sm btn-warning" href="#">Edit</a>
-								<a class="btn btn-sm btn-danger" href="#">Delete</a>
+								<a class="btn btn-sm btn-danger" href="?id=<?php echo $data['id']; ?>">Delete</a>
 							</td>
 						</tr>
 					<?php endwhile; ?>
