@@ -22,10 +22,9 @@
 		$name = $_POST['name'];
 		$email = $_POST['email'];
 		$cell = $_POST['cell'];
-		$uname = $_POST['uname']; 
 		$photo = $_FILES['photo'];
 
-		if (empty($name) || empty($email) || empty($cell) || empty($uname)) {
+		if (empty($name) || empty($email) || empty($cell)) {
 			$mess = " <p class= 'alert alert-danger'>Field must not be empty !!<button class = 'close', data-dismiss = 'alert'>&times;</button></p> ";
 		}
 		elseif (! filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -65,10 +64,6 @@
 					<div class="form-group">
 						<label for="">Cell</label>
 						<input name  = "cell" class="form-control" type="text">
-					</div>
-					<div class="form-group">
-						<label for="">Username</label>
-						<input name  = "uname" class="form-control" type="text">
 					</div>
 					<div class="form-group">
 						<label for="">Photo</label>

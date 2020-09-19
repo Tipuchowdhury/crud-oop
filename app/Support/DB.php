@@ -20,7 +20,9 @@ abstract class DB
 
 		return $this->conn = new mysqli ($this->host, $this->user, $this->pass, $this->db);
 	}
-
+	/**
+	 * insert into database from form
+	 */
 	protected function InsertData($table_name, array $data){
 
 		// get keys from array
@@ -41,6 +43,42 @@ abstract class DB
 			return true;
 		}
 
+	}
+	/**
+	 * uploading file into database
+	 */
+	protected function photoUpload($file, $location= '', array $file_type= ['jpg', 'png', 'jpeg', 'gif' ] ) {
+
+		$file_name = $file['name'];
+		$file_tmp = $file['tmp_name'];
+		$file_size = $file['size'];
+		$file_array = explode('.', $file_name);
+		$file_extension = strtolower (end($file_array));
+		$unique_name = md5(time(). rand()) . '.'. $file_extension;
+		move_uploaded_file($file_tmp, $location . $unique_name);
+		return $unique_name;
+	}
+
+	/**
+	 * pull all student data from database
+	 */
+
+	protected function Students_info ($table, $order_by) {
+
+		$sql = "SELECT * FROM $table ORDER BY id $order_by";
+		$data = $this->Dbonnection ()-> query($sql);
+		if ($data) {
+			return $data;
+		}
+
+	}
+	protected function single_student_info ($id) {
+
+		$sql = "SELECT * FROM crud WHERE id = $id";
+		$info = $this->Dbonnection ()-> query($sql);
+		if ($info) {
+			return $info;
+		}
 	}
 
 
